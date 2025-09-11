@@ -11,7 +11,6 @@ Desenvolvido em **C#** com **banco de dados MySQL**.
 - Registrar entrada e saída de veículos
 - Calcular tempo de permanência
 - Aplicar tarifas conforme tabela de preços
-- Relatórios simples de veículos estacionados
 
 ---
 
@@ -19,7 +18,6 @@ Desenvolvido em **C#** com **banco de dados MySQL**.
 
 - C#
 - MySQL
-- (Opcional) Entity Framework Core
 
 ---
 
@@ -28,3 +26,4 @@ Desenvolvido em **C#** com **banco de dados MySQL**.
 1. Clone este repositório:
    ```bash
    git clone <link-do-repositório>
+
