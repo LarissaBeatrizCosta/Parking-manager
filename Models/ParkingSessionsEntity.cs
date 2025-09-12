@@ -3,7 +3,7 @@ namespace parking_manager.Models
     public class ParkingSessionsEntity
     {
         public int Id { get; set; }
-        public required int VehicleId { get; set; }
+        public required string VehicleId { get; set; }
 
         public required string EntryDate { get; set; }
         public required string ExitDate { get; set; }

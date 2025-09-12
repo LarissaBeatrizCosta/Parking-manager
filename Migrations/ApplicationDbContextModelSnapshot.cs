@@ -48,7 +48,7 @@ namespace parking_manager.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Parking");
+                    b.ToTable("Parking", (string)null);
                 });
 
             modelBuilder.Entity("parking_manager.Models.PricesEntity", b =>
@@ -78,7 +78,7 @@ namespace parking_manager.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Prices");
+                    b.ToTable("Prices", (string)null);
                 });
 
             modelBuilder.Entity("parking_manager.Models.VehiclesEntity", b =>
@@ -101,7 +101,7 @@ namespace parking_manager.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Vehicles");
+                    b.ToTable("Vehicles", (string)null);
                 });
 #pragma warning restore 612, 618
         }

@@ -20,7 +20,7 @@ namespace parking_manager.Migrations
                            {
                                Id = table.Column<int>(type: "int", nullable: false)
                                    .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                               Plate = table.Column<string>(type: "longtext", nullable: false)
+                               Plate = table.Column<string>(type: "varchar(255)", nullable: false)
                                    .Annotation("MySql:CharSet", "utf8mb4"),
                                CreatedAt = table.Column<string>(type: "longtext", nullable: false)
                                    .Annotation("MySql:CharSet", "utf8mb4"),
@@ -33,6 +33,14 @@ namespace parking_manager.Migrations
                            })
                            .Annotation("MySql:CharSet", "utf8mb4");
 
+            migrationBuilder.CreateIndex(
+                name: "IX_Vehicles_Plate",
+                table: "Vehicles",
+                column: "Plate",
+                unique: true
+            );
+
+
 
             migrationBuilder.CreateTable(
                 name: "Parking",
@@ -40,7 +48,7 @@ namespace parking_manager.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    VehicleId = table.Column<int>(type: "int", nullable: false),
+                    VehicleId = table.Column<string>(type: "varchar(255)", nullable: false),
                     EntryDate = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     ExitDate = table.Column<string>(type: "longtext", nullable: false)
@@ -58,7 +66,7 @@ namespace parking_manager.Migrations
                         name: "FK_Parking_Vehicles_VehicleId",
                         column: x => x.VehicleId,
                         principalTable: "Vehicles",
-                        principalColumn: "Id",
+                        principalColumn: "Plate",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -66,7 +74,8 @@ namespace parking_manager.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Parking_VehicleId",
                 table: "Parking",
-                column: "VehicleId");
+                column: "VehicleId",
+                unique: true);
 
             migrationBuilder.CreateTable(
                 name: "Prices",
