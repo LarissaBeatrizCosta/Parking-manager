@@ -1,12 +1,20 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using parking_manager.Data;
+using parking_manager.Interfaces;
+using parking_manager.Repositories;
+using parking_manager.Repository;
+using parking_manager.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.AddTransient<IVehicleRepository, VehicleRepository>();
+builder.Services.AddTransient<IVehicleService, VehicleService>();
+
 
 var connectionString = builder.Configuration.GetConnectionString("ConnectionDb");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -37,7 +45,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
-
 app.UseAuthorization();
 
 app.MapStaticAssets();
