@@ -1,8 +1,7 @@
-using System.Collections;
 using Microsoft.EntityFrameworkCore;
 using parking_manager.Data;
-using parking_manager.Models;
-using parking_manager.Repositories;
+using parking_manager.Entity;
+using parking_manager.Interfaces;
 
 namespace parking_manager.Repository
 {

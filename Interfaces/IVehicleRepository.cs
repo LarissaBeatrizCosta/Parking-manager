@@ -1,6 +1,6 @@
-using parking_manager.Models;
+using parking_manager.Entity;
 
-namespace parking_manager.Repositories
+namespace parking_manager.Interfaces
 {
     public interface IVehicleRepository
     {

@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using parking_manager.Data;
 using parking_manager.Interfaces;
-using parking_manager.Repositories;
 using parking_manager.Repository;
 using parking_manager.Services;
 

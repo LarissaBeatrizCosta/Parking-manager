@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace parking_manager.Models
+namespace parking_manager.Entity
 {
     public class PricesEntity
     {

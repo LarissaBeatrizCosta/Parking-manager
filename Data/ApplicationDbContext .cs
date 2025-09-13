@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using parking_manager.Models;
+using parking_manager.Entity;
 
 namespace parking_manager.Data
 {

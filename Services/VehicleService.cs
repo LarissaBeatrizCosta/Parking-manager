@@ -1,7 +1,6 @@
 using parking_manager.DTO;
 using parking_manager.Interfaces;
-using parking_manager.Models;
-using parking_manager.Repositories;
+using parking_manager.Entity;
 
 namespace parking_manager.Services
 {
