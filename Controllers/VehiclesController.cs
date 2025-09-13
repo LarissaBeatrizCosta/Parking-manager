@@ -1,22 +1,21 @@
 using Microsoft.AspNetCore.Mvc;
-using parking_manager.Data;
+using parking_manager.Interfaces;
 using parking_manager.Models;
-using parking_manager.Repositories;
 
 namespace parking_manager.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class VehiclesController(IVehicleRepository vehicleRepository) : ControllerBase
+    public class VehiclesController(IVehicleService vehicleService) : ControllerBase
     {
-        private readonly IVehicleRepository _vehicleRepository = vehicleRepository;
+        private readonly IVehicleService _vehicleService = vehicleService;
 
         [HttpPost]
         public async Task<IActionResult> CreateVehicle(VehiclesEntity vehicle)
         {
             try
             {
-                await _vehicleRepository.CreateVehicleAsync(vehicle);
+                await _vehicleService.CreateVehicleAsync(vehicle);
                 return Ok(vehicle);
             }
             catch (Exception ex)

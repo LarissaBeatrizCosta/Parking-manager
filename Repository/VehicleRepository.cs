@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using parking_manager.Data;
 using parking_manager.Models;
 using parking_manager.Repositories;
@@ -18,5 +14,7 @@ namespace parking_manager.Repository
             await _context.SaveChangesAsync();
             return vehicle;
         }
+
+
     }
 }
