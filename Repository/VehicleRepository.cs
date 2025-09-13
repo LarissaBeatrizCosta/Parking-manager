@@ -22,5 +22,13 @@ namespace parking_manager.Repository
             return await _context.Vehicles.ToListAsync();
         }
 
+
+        public async Task<VehiclesEntity?> GetVehicleById(string plate)
+        {
+            var vehicle = await _context.Vehicles.Where(v => v.Plate == plate).FirstOrDefaultAsync();
+            return vehicle;
+        }
+
+
     }
 }

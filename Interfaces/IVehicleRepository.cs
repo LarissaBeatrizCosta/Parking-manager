@@ -6,5 +6,7 @@ namespace parking_manager.Repositories
     {
         Task<VehiclesEntity> CreateVehicle(VehiclesEntity vehicle);
         Task<IEnumerable<VehiclesEntity>> GetVehicles();
+
+        Task<VehiclesEntity?> GetVehicleById(string plate);
     }
 }

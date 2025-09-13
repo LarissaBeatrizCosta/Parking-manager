@@ -37,5 +37,24 @@ namespace parking_manager.Controllers
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
+
+        [HttpGet("{plate}")]
+        public async Task<IActionResult> GetVehicleById(string plate)
+        {
+            try
+            {
+                var vehicle = await _vehicleService.GetVehicleById(plate);
+                if (vehicle == null)
+                    return NotFound("Vehicle not found");
+
+                return Ok(vehicle);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+        
     }
 }

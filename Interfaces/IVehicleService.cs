@@ -8,5 +8,7 @@ namespace parking_manager.Interfaces
         Task<VehicleDTO> CreateVehicle(VehicleDTO vehicle);
         Task<IEnumerable<VehicleDTO>> GetVehicles();
 
+        Task<VehicleDTO?> GetVehicleById(string plate);
+
     }
 }
