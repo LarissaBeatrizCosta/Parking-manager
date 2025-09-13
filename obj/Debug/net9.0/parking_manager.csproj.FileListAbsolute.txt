@@ -186,3 +186,8 @@ C:\Users\laris\OneDrive\Área de Trabalho\parking_manager\bin\Debug\net9.0\runti
 C:\Users\laris\OneDrive\Área de Trabalho\parking_manager\bin\Debug\net9.0\runtimes\win-x64\native\krbcc64.dll
 C:\Users\laris\OneDrive\Área de Trabalho\parking_manager\bin\Debug\net9.0\runtimes\win\lib\net8.0\System.Windows.Extensions.dll
 C:\Users\laris\OneDrive\Área de Trabalho\parking_manager\obj\Debug\net9.0\parking_.35FFF3E8.Up2Date
+C:\Users\laris\OneDrive\Área de Trabalho\parking_manager\bin\Debug\net9.0\Microsoft.OpenApi.dll
+C:\Users\laris\OneDrive\Área de Trabalho\parking_manager\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\laris\OneDrive\Área de Trabalho\parking_manager\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\laris\OneDrive\Área de Trabalho\parking_manager\obj\Debug\net9.0\parking_manager.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\laris\OneDrive\Área de Trabalho\parking_manager\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll

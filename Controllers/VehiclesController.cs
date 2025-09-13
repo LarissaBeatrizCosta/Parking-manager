@@ -1,11 +1,20 @@
 using Microsoft.AspNetCore.Mvc;
 using parking_manager.Data;
+using parking_manager.Models;
 
 namespace parking_manager.Controllers
 {
-    [Route("[vehicles]")]
-    public class VehiclesController(ApplicationDbContext context) : Controller
+    [ApiController]
+    [Route("api/vehicles")]
+    public class VehiclesController(ApplicationDbContext appDbContext) : ControllerBase
     {
-        private readonly ApplicationDbContext _context = context;
+
+        [HttpPost]
+        public async Task<IActionResult> CreateVehicle(VehiclesEntity vehicle)
+        {
+            appDbContext.Vehicles.Add(vehicle);
+            await appDbContext.SaveChangesAsync();
+            return Ok(vehicle);
+        }
     }
 }
