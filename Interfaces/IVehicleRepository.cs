@@ -4,6 +4,7 @@ namespace parking_manager.Repositories
 {
     public interface IVehicleRepository
     {
-        Task<VehiclesEntity> CreateVehicleAsync(VehiclesEntity vehicle);
+        Task<VehiclesEntity> CreateVehicle(VehiclesEntity vehicle);
+        Task<IEnumerable<VehiclesEntity>> GetVehicles();
     }
 }

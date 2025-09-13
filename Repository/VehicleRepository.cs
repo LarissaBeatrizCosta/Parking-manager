@@ -1,3 +1,5 @@
+using System.Collections;
+using Microsoft.EntityFrameworkCore;
 using parking_manager.Data;
 using parking_manager.Models;
 using parking_manager.Repositories;
@@ -8,13 +10,17 @@ namespace parking_manager.Repository
     {
         private readonly ApplicationDbContext _context = context;
 
-        public async Task<VehiclesEntity> CreateVehicleAsync(VehiclesEntity vehicle)
+        public async Task<VehiclesEntity> CreateVehicle(VehiclesEntity vehicle)
         {
             _context.Vehicles.Add(vehicle);
             await _context.SaveChangesAsync();
             return vehicle;
         }
 
+        public async Task<IEnumerable<VehiclesEntity>> GetVehicles()
+        {
+            return await _context.Vehicles.ToListAsync();
+        }
 
     }
 }
