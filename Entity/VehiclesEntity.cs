@@ -11,9 +11,9 @@ namespace parking_manager.Entity
         public required string Plate { get; set; }
 
 
-        public string CreatedAt { get; set; } = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
 
-        public string UpdatedAt { get; set; } = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
     }
 }

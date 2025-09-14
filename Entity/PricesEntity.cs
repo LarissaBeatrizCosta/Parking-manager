@@ -9,18 +9,18 @@ namespace parking_manager.Entity
         public int Id { get; set; }
 
         [Required]
-        public required string ValidFrom { get; set; }
+        public required DateTime ValidFrom { get; set; }
         [Required]
 
-        public required string ValidTo { get; set; }
+        public required DateTime ValidTo { get; set; }
         [Required]
 
 
         public required double PricePerHour { get; set; }
 
 
-        public string CreatedAt { get; set; } = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
 
-        public string UpdatedAt { get; set; } = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        public DateTime UpdatedAt { get; set; } = DateTime.Now;
     }
 }

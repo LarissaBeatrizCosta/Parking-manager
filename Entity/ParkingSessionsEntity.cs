@@ -12,16 +12,16 @@ namespace parking_manager.Entity
         public required string VehicleId { get; set; }
         [Required]
 
-        public required string EntryDate { get; set; }
+        public required DateTime EntryDate { get; set; }
         [Required]
 
-        public required string ExitDate { get; set; }
+        public required DateTime ExitDate { get; set; }
         [Required]
 
         public double TotalPrice { get; set; }
 
-        public string CreatedAt { get; set; } = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
 
-        public string UpdatedAt { get; set; } = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        public DateTime UpdatedAt { get; set; } = DateTime.Now;
     }
 }
