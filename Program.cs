@@ -13,6 +13,8 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddTransient<IVehicleRepository, VehicleRepository>();
 builder.Services.AddTransient<IVehicleService, VehicleService>();
+builder.Services.AddScoped<IPriceRepository, PriceRepository>();
+builder.Services.AddScoped<IPriceService, PriceService>();
 
 
 var connectionString = builder.Configuration.GetConnectionString("ConnectionDb");

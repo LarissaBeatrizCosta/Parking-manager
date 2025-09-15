@@ -29,11 +29,10 @@ namespace parking_manager.Services
             var vehicle = await _vehicleRepository.GetVehicleById(plate);
             if (vehicle == null) return null;
 
-            var vehicleDTO = new VehicleDTO
+            return new VehicleDTO
             {
                 Plate = vehicle.Plate
             };
-            return vehicleDTO;
         }
 
         public async Task<IEnumerable<VehicleDTO>> GetVehicles()

@@ -20,8 +20,8 @@ namespace parking_manager.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Plate = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                    CreatedAt = table.Column<DateTime>(type: "datetime(2)", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime(2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -49,11 +49,11 @@ namespace parking_manager.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     VehicleId = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    EntryDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    ExitDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    EntryDate = table.Column<DateTime>(type: "datetime(2)", nullable: false),
+                    ExitDate = table.Column<DateTime>(type: "datetime(2)", nullable: false),
                     TotalPrice = table.Column<double>(type: "double", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                    CreatedAt = table.Column<DateTime>(type: "datetime(2)", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime(2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -81,11 +81,11 @@ namespace parking_manager.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    ValidFrom = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    ValidTo = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    ValidFrom = table.Column<DateTime>(type: "datetime(2)", nullable: false),
+                    ValidTo = table.Column<DateTime>(type: "datetime(2)", nullable: false),
                     PricePerHour = table.Column<double>(type: "double", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                    CreatedAt = table.Column<DateTime>(type: "datetime(2)", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime(2)", nullable: false)
                 },
                 constraints: table =>
                 {

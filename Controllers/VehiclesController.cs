@@ -15,8 +15,8 @@ namespace parking_manager.Controllers
         {
             try
             {
-                await _vehicleService.CreateVehicle(vehicle);
-                return Ok(vehicle);
+                var newVehicle = await _vehicleService.CreateVehicle(vehicle);
+                return Ok(newVehicle);
             }
             catch (Exception ex)
             {

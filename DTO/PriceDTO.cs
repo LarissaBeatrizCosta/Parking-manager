@@ -2,9 +2,10 @@ namespace parking_manager.DTO
 {
     public class PriceDTO
     {
-        public required DateTime ValidFrom { get; set; }
-        public required DateTime ValidTo { get; set; }
+        public string ValidFrom { get; set; } = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        public string ValidTo { get; set; } = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         public required double PricePerHour { get; set; }
+
 
     }
 }

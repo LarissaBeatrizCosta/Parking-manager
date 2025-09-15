@@ -11,18 +11,26 @@ namespace parking_manager.Services
 
         public async Task<PricesEntity> CreatePrice(PriceDTO price)
         {
-            if (price.ValidFrom >= price.ValidTo)
+            var initalDate = DateTime.Parse(price.ValidFrom);
+            var finalDate = DateTime.Parse(price.ValidTo);
+
+            if (initalDate >= finalDate)
             {
                 throw new Exception("Invalid validity period");
             }
+
+            if (price.PricePerHour <= 0)
+            {
+                throw new Exception("Price per hour must be greater than zero");
+            }
             var newPrice = new PricesEntity
             {
-                ValidFrom = price.ValidFrom,
-                ValidTo = price.ValidTo,
+                ValidFrom = initalDate,
+                ValidTo = finalDate,
                 PricePerHour = price.PricePerHour
             };
 
-            var alreadyExists = await _priceRepository.GetPriceValidation(price.ValidFrom, price.ValidTo);
+            var alreadyExists = await _priceRepository.GetPriceValidation(initalDate, finalDate);
             if (alreadyExists != null)
             {
                 throw new Exception("Price already exists");
@@ -39,10 +47,13 @@ namespace parking_manager.Services
 
             if (priceRange == null) return null;
 
+            var initalDate = priceRange.ValidFrom.ToString("yyyy-MM-dd HH:mm:ss");
+            var finalDate = priceRange.ValidTo.ToString("yyyy-MM-dd HH:mm:ss");
+
             return new PriceDTO
             {
-                ValidFrom = priceRange.ValidFrom,
-                ValidTo = priceRange.ValidTo,
+                ValidFrom = initalDate,
+                ValidTo = finalDate,
                 PricePerHour = priceRange.PricePerHour
             };
         }
