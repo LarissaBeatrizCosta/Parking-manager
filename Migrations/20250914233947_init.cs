@@ -50,8 +50,8 @@ namespace parking_manager.Migrations
                     VehicleId = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     EntryDate = table.Column<DateTime>(type: "datetime(2)", nullable: false),
-                    ExitDate = table.Column<DateTime>(type: "datetime(2)", nullable: false),
-                    TotalPrice = table.Column<double>(type: "double", nullable: false),
+                    ExitDate = table.Column<DateTime>(type: "datetime(2)", nullable: true),
+                    TotalPrice = table.Column<double>(type: "double", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime(2)", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime(2)", nullable: false)
                 },

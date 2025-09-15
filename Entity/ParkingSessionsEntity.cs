@@ -13,12 +13,10 @@ namespace parking_manager.Entity
         [Required]
 
         public required DateTime EntryDate { get; set; }
-        [Required]
 
-        public required DateTime ExitDate { get; set; }
-        [Required]
+        public DateTime? ExitDate { get; set; }
 
-        public double TotalPrice { get; set; }
+        public double? TotalPrice { get; set; }
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
