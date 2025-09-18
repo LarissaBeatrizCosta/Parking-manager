@@ -12,7 +12,7 @@ namespace parking_manager.Entity
         public required string VehicleId { get; set; }
         [Required]
 
-        public required DateTime EntryDate { get; set; }
+        public DateTime EntryDate { get; set; } = DateTime.Now;
 
         public DateTime? ExitDate { get; set; }
 

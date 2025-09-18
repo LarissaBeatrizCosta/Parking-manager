@@ -15,6 +15,8 @@ builder.Services.AddTransient<IVehicleRepository, VehicleRepository>();
 builder.Services.AddTransient<IVehicleService, VehicleService>();
 builder.Services.AddScoped<IPriceRepository, PriceRepository>();
 builder.Services.AddScoped<IPriceService, PriceService>();
+builder.Services.AddScoped<IParkingSessionsRepository, ParkingSessionsRepository>();
+builder.Services.AddScoped<IParkingSessionService, ParkingSessionService>();
 
 
 var connectionString = builder.Configuration.GetConnectionString("ConnectionDb");
