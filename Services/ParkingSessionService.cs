@@ -1,4 +1,3 @@
-using Google.Protobuf.WellKnownTypes;
 using parking_manager.DTO;
 using parking_manager.Entity;
 using parking_manager.Interfaces;
@@ -131,33 +130,27 @@ namespace parking_manager.Services
             return parkingSessionsDTOs;
         }
 
+
+        /// Calculate total price based on duration and price per hour, considering the rules:
+        /// If total minutes is less than or equal to 30: half the hourly price is charged.      
+        /// If exceed 10 minutes, the next full hour is charged.
+
         private static double CalculateTotalPrice(TimeSpan duration, double pricePerHour)
         {
-            int totalMinutes = Convert.ToInt32(duration.TotalMinutes);
+            if (duration.TotalMinutes <= 30)
+                return pricePerHour / 2;
 
-            if (totalMinutes <= 30)
+            int hours = Convert.ToInt32(duration.TotalHours);
+            double totalPrice = hours * pricePerHour;
+
+            int remainingMinutes = duration.Minutes;
+
+            if (remainingMinutes > 10)
             {
-                return pricePerHour * 0.5;
+                totalPrice += pricePerHour;
             }
 
-            int totalHours = totalMinutes / 60;
-            int remainingMinutes = totalMinutes - (totalHours * 60);
-            int toleranceMinutes = 10 * totalHours;
-
-            if (remainingMinutes <= toleranceMinutes)
-            {
-                return totalHours * pricePerHour;
-            }
-
-            if (remainingMinutes <= 30)
-            {
-                return (totalHours * pricePerHour) + (pricePerHour * 0.5);
-            }
-            else
-            {
-                return pricePerHour * (totalHours + 1);
-            }
-
+            return totalPrice;
         }
 
 
