@@ -1,0 +1,27 @@
+@model IEnumerable<parking_manager.DTO.ParkingSessionsDTO>
+
+<h2>Veículos no Estacionamento</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Placa</th>
+            <th>Entrada</th>
+            <th>Saída</th>
+            <th>Preço</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var session in Model)
+        {
+            <tr>
+                <td>@session.VehiclePlate</td>
+                <td>@session.EntryDate</td>
+                <td>@session.ExitDate</td>
+                <td>@session.TotalPrice</td>
+
+            </tr>
+        }
+    </tbody>
+</table>

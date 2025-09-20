@@ -41,7 +41,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Parking Manager API v1");
-        c.RoutePrefix = string.Empty; // abre direto em http://localhost:5000/
+        // c.RoutePrefix = string.Empty; // abre direto em http://localhost:5000/
     });
 }
 
@@ -52,8 +52,8 @@ app.UseAuthorization();
 app.MapStaticAssets();
 
 app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
+    name: "ViewParking",
+    pattern: "{controller=ViewParking}/{action=Index}/{id?}")
     .WithStaticAssets();
 
 app.Run();
