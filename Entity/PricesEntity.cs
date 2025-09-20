@@ -18,6 +18,8 @@ namespace parking_manager.Entity
 
         public required double PricePerHour { get; set; }
 
+        public required double FirstHourPrice { get; set; }
+
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 

@@ -30,13 +30,11 @@ namespace parking_manager.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
-                         name: "IX_Vehicles_Plate",
-                         table: "Vehicles",
-                         column: "Plate",
-                         unique: true
-                     );
-
-
+                                   name: "IX_Vehicles_Plate",
+                                   table: "Vehicles",
+                                   column: "Plate",
+                                   unique: true
+                               );
 
             migrationBuilder.AlterDatabase()
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -59,21 +57,21 @@ namespace parking_manager.Migrations
                 {
                     table.PrimaryKey("PK_Parking", x => x.Id);
                     table.ForeignKey(
-                       name: "FK_Parking_Vehicles_VehicleId",
-                       column: x => x.VehicleId,
-                       principalTable: "Vehicles",
-                       principalColumn: "Plate",
-                       onDelete: ReferentialAction.Cascade);
+                      name: "FK_Parking_Vehicles_VehicleId",
+                      column: x => x.VehicleId,
+                      principalTable: "Vehicles",
+                      principalColumn: "Plate",
+                      onDelete: ReferentialAction.Cascade);
 
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
-
             migrationBuilder.CreateIndex(
-                name: "IX_Parking_VehicleId",
-                table: "Parking",
-                column: "VehicleId",
-                unique: true);
+           name: "IX_Parking_VehicleId",
+           table: "Parking",
+           column: "VehicleId",
+           unique: true);
+
 
             migrationBuilder.CreateTable(
                 name: "Prices",
@@ -84,6 +82,7 @@ namespace parking_manager.Migrations
                     ValidFrom = table.Column<DateTime>(type: "datetime(2)", nullable: false),
                     ValidTo = table.Column<DateTime>(type: "datetime(2)", nullable: false),
                     PricePerHour = table.Column<double>(type: "double", nullable: false),
+                    FirstHourPrice = table.Column<double>(type: "double", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime(2)", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime(2)", nullable: false)
                 },

@@ -59,14 +59,15 @@ namespace parking_manager.Services
             parkingSession.UpdatedAt = DateTime.Now;
 
 
-            var getPricePerHour = await _priceRepository.GetPriceValidation(parkingSession.EntryDate, parkingSession.ExitDate ?? DateTime.Now) ?? throw new Exception("There is no price defined for this period");
-            var pricePerHour = getPricePerHour.PricePerHour;
+            var prices = await _priceRepository.GetPriceValidation(parkingSession.EntryDate, parkingSession.ExitDate ?? DateTime.Now) ?? throw new Exception("There is no price defined for this period");
+            var pricePerHour = prices.PricePerHour;
+            var priceFirstHour = prices.FirstHourPrice;
+
 
             var durationSession = CalculateDuration(parkingSession.EntryDate, parkingSession.ExitDate);
             var totalHours = CalculateHours(durationSession);
 
-            parkingSession.TotalPrice = CalculateTotalPrice(durationSession, pricePerHour);
-
+            parkingSession.TotalPrice = CalculateTotalPrice(durationSession, priceFirstHour, pricePerHour);
 
             await _parkingRepository.UpdateParkingSession(parkingSession);
 
@@ -131,26 +132,34 @@ namespace parking_manager.Services
         }
 
 
-        /// Calculate total price based on duration and price per hour, considering the rules:
-        /// If total minutes is less than or equal to 30: half the hourly price is charged.      
-        /// If exceed 10 minutes, the next full hour is charged.
-
-        private static double CalculateTotalPrice(TimeSpan duration, double pricePerHour)
+        /// Calculate total price based on duration and price per hour
+        private static double CalculateTotalPrice(TimeSpan duration, double firstHourPrice, double pricePerHour)
         {
             if (duration.TotalMinutes <= 30)
-                return pricePerHour / 2;
+                return firstHourPrice / 2;
 
-            int hours = Convert.ToInt32(duration.TotalHours);
-            double totalPrice = hours * pricePerHour;
+            double totalPrice = firstHourPrice;
+            var remainingMinutes = duration.TotalMinutes - 60;
 
-            int remainingMinutes = duration.Minutes;
-
-            if (remainingMinutes > 10)
+            if (remainingMinutes > 0)
             {
-                totalPrice += pricePerHour;
-            }
+                double additionalHours = remainingMinutes / 60;
+                double minutes = remainingMinutes % 60;
 
+                if (minutes > 10)
+                {
+                    additionalHours = additionalHours - (minutes / 60) + 1;
+                }
+                else
+                {
+                    additionalHours -= minutes / 60;
+                }
+
+
+                totalPrice += additionalHours * pricePerHour;
+            }
             return totalPrice;
+
         }
 
 
@@ -178,3 +187,4 @@ namespace parking_manager.Services
 
     }
 }
+

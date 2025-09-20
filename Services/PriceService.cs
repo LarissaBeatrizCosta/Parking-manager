@@ -19,7 +19,7 @@ namespace parking_manager.Services
                 throw new Exception("Invalid validity period");
             }
 
-            if (price.PricePerHour <= 0)
+            if (price.PricePerHour <= 0 || price.FirstHourPrice <= 0)
             {
                 throw new Exception("Price per hour must be greater than zero");
             }
@@ -27,7 +27,8 @@ namespace parking_manager.Services
             {
                 ValidFrom = initalDate,
                 ValidTo = finalDate,
-                PricePerHour = price.PricePerHour
+                PricePerHour = price.PricePerHour,
+                FirstHourPrice = price.FirstHourPrice
             };
 
             var alreadyExists = await _priceRepository.GetPriceValidation(initalDate, finalDate);
@@ -54,7 +55,8 @@ namespace parking_manager.Services
             {
                 ValidFrom = initalDate,
                 ValidTo = finalDate,
-                PricePerHour = priceRange.PricePerHour
+                PricePerHour = priceRange.PricePerHour,
+                FirstHourPrice = priceRange.FirstHourPrice
             };
         }
 

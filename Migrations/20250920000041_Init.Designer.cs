@@ -11,7 +11,7 @@ using parking_manager.Data;
 namespace parking_manager.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250914233947_init")]
+    [Migration("20250920000041_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -31,15 +31,13 @@ namespace parking_manager.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("EntryDate")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<DateTime>("EntryDate")
+                        .HasColumnType("datetime(6)");
 
-                    b.Property<string>("ExitDate")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<DateTime?>("ExitDate")
+                        .HasColumnType("datetime(6)");
 
-                    b.Property<double>("TotalPrice")
+                    b.Property<double?>("TotalPrice")
                         .HasColumnType("double");
 
                     b.Property<DateTime>("UpdatedAt")
@@ -63,19 +61,20 @@ namespace parking_manager.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<double>("FirstHourPrice")
+                        .HasColumnType("double");
+
                     b.Property<double>("PricePerHour")
                         .HasColumnType("double");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("ValidFrom")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<DateTime>("ValidFrom")
+                        .HasColumnType("datetime(6)");
 
-                    b.Property<string>("ValidTo")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<DateTime>("ValidTo")
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 
