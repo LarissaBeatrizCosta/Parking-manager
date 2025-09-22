@@ -12,13 +12,14 @@ namespace parking_manager.Services
         private static partial Regex plateRegex();
         private readonly IVehicleRepository _vehicleRepository = vehicleRepository;
 
+        /// Create a new vehicle , with parameters plate
         public async Task<VehicleDTO> CreateVehicle(VehicleDTO vehicle)
         {
             var plateUpper = vehicle.Plate.Trim().ToUpper();
             var regex = plateRegex();
             if (!regex.IsMatch(plateUpper))
             {
-                throw new Exception("Invalid plate format");
+                throw new Exception("Placa inválida");
             }
 
             var plateFormatted = plateUpper.Replace("-", "");
@@ -26,7 +27,7 @@ namespace parking_manager.Services
             var alreadyExists = await _vehicleRepository.GetVehicleById(plateFormatted);
             if (alreadyExists != null)
             {
-                throw new Exception("Vehicle already exists");
+                throw new Exception("Veiculo ja cadastrado");
             }
 
             var newVehicle = new VehiclesEntity
@@ -39,13 +40,14 @@ namespace parking_manager.Services
             return new VehicleDTO { Plate = plateFormatted };
         }
 
+        /// Get vehicle by id with parameters plate
         public async Task<VehicleDTO?> GetVehicleById(string plate)
         {
             var plateUpper = plate.Trim().ToUpper();
             var regex = plateRegex();
             if (!regex.IsMatch(plateUpper))
             {
-                throw new Exception("Invalid plate format");
+                throw new Exception("Placa inválida");
             }
 
             var plateFormatted = plateUpper.Replace("-", "");
@@ -58,6 +60,8 @@ namespace parking_manager.Services
                 Plate = vehicle.Plate
             };
         }
+
+        /// Get all vehicles 
 
         public async Task<IEnumerable<VehicleDTO>> GetVehicles()
         {

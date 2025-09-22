@@ -9,7 +9,9 @@ namespace parking_manager.Controllers
     {
         private readonly IParkingSessionService _parkingService = parkingService;
 
-        [HttpPost]
+        /// Create a new parking session for a vehicle
+
+        [HttpPost("{plate}")]
         public async Task<ActionResult<ParkingSessionsDTO>> CreateParkingSession(string plate)
         {
             try
@@ -19,11 +21,13 @@ namespace parking_manager.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode(500, ex.Message);
             }
         }
 
-        [HttpPost("finalize/{plate}")]
+        /// Finalize a parking session
+
+        [HttpPut("{plate}/finalize")]
         public async Task<ActionResult<ParkingSessionsDTO>> FinalizeParkingSession(string plate)
         {
             try
@@ -33,9 +37,11 @@ namespace parking_manager.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode(500, ex.Message);
             }
         }
+
+        /// Get all parking sessions
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ParkingSessionsDTO>>> GetParkingSessions()
@@ -47,7 +53,7 @@ namespace parking_manager.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode(500,ex.Message);
             }
         }
     }

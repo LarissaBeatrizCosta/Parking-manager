@@ -10,6 +10,8 @@ namespace parking_manager.Controllers
     {
         private readonly IVehicleService _vehicleService = vehicleService;
 
+        /// Create a new vehicle
+
         [HttpPost]
         public async Task<IActionResult> CreateVehicle(VehicleDTO vehicle)
         {
@@ -20,9 +22,12 @@ namespace parking_manager.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode(500, ex.Message);
             }
         }
+
+        /// Get all vehicles
+
 
         [HttpGet]
         public async Task<IActionResult> GetVehicles()
@@ -34,9 +39,11 @@ namespace parking_manager.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode(500, ex.Message);
             }
         }
+
+        /// Get vehicle by id
 
         [HttpGet("{plate}")]
         public async Task<IActionResult> GetVehicleById(string plate)
@@ -45,16 +52,16 @@ namespace parking_manager.Controllers
             {
                 var vehicle = await _vehicleService.GetVehicleById(plate);
                 if (vehicle == null)
-                    return NotFound("Vehicle not found");
+                    return NotFound("Veículo não encontrado");
 
                 return Ok(vehicle);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode(500, ex.Message);
             }
         }
 
-        
+
     }
 }

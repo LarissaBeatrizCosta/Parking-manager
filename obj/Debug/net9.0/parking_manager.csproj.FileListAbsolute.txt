@@ -84,8 +84,6 @@ C:\Users\laris\OneDrive\Área de Trabalho\parking_manager\obj\Debug\net9.0\compr
 C:\Users\laris\OneDrive\Área de Trabalho\parking_manager\obj\Debug\net9.0\compressed\xdro465w5z-muycvpuwrr.gz
 C:\Users\laris\OneDrive\Área de Trabalho\parking_manager\obj\Debug\net9.0\compressed\go2ouroeuk-87fc7y1x7t.gz
 C:\Users\laris\OneDrive\Área de Trabalho\parking_manager\obj\Debug\net9.0\compressed\jqnjowor36-mlv21k5csn.gz
-C:\Users\laris\OneDrive\Área de Trabalho\parking_manager\obj\Debug\net9.0\compressed\rzij6pouvc-ibfvrqzq73.gz
-C:\Users\laris\OneDrive\Área de Trabalho\parking_manager\obj\Debug\net9.0\compressed\bq508wkxm8-ibfvrqzq73.gz
 C:\Users\laris\OneDrive\Área de Trabalho\parking_manager\obj\Debug\net9.0\staticwebassets.build.json
 C:\Users\laris\OneDrive\Área de Trabalho\parking_manager\obj\Debug\net9.0\staticwebassets.build.json.cache
 C:\Users\laris\OneDrive\Área de Trabalho\parking_manager\obj\Debug\net9.0\staticwebassets.development.json
@@ -191,3 +189,7 @@ C:\Users\laris\OneDrive\Área de Trabalho\parking_manager\bin\Debug\net9.0\Swash
 C:\Users\laris\OneDrive\Área de Trabalho\parking_manager\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\laris\OneDrive\Área de Trabalho\parking_manager\obj\Debug\net9.0\parking_manager.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\laris\OneDrive\Área de Trabalho\parking_manager\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\laris\OneDrive\Área de Trabalho\parking_manager\obj\Debug\net9.0\compressed\rzij6pouvc-hgx784s6iu.gz
+C:\Users\laris\OneDrive\Área de Trabalho\parking_manager\obj\Debug\net9.0\compressed\bq508wkxm8-hgx784s6iu.gz
+C:\Users\laris\OneDrive\Área de Trabalho\parking_manager\obj\Debug\net9.0\compressed\qwepeqw3ku-lip8tksmgw.gz
+C:\Users\laris\OneDrive\Área de Trabalho\parking_manager\obj\Debug\net9.0\compressed\dknj7aqyj6-g4u4n54owp.gz

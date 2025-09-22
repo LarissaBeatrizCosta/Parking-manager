@@ -1,0 +1,22 @@
+.btn-benner-red {
+    background-color: #E21B35; 
+    border-color: #E21B35;
+    color: white;
+}
+.btn-benner-red:hover {
+    background-color: #B2152A;
+    border-color: #B2152A;
+}
+.btn-benner-blue {
+    background-color: #00458C;
+    border-color: #00458C;
+    color: white;
+}
+.btn-benner-blue:hover {
+    background-color: #003061;
+    border-color: #003061;
+}
+.table-benner-header {
+    background-color: #00458C;
+    color: white;
+}

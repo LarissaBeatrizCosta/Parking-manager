@@ -16,12 +16,12 @@ namespace parking_manager.Services
 
             if (initalDate >= finalDate)
             {
-                throw new Exception("Invalid validity period");
+                throw new Exception("Período de vigência inválido");
             }
 
             if (price.PricePerHour <= 0 || price.FirstHourPrice <= 0)
             {
-                throw new Exception("Price per hour must be greater than zero");
+                throw new Exception("Preço por hora ou preço de primeira hora inválido");
             }
             var newPrice = new PricesEntity
             {
@@ -34,13 +34,15 @@ namespace parking_manager.Services
             var alreadyExists = await _priceRepository.GetPriceValidation(initalDate, finalDate);
             if (alreadyExists != null)
             {
-                throw new Exception("Price already exists");
+                throw new Exception("Preço já cadastrado");
             }
 
             await _priceRepository.CreatePrice(newPrice);
             return newPrice;
 
         }
+
+        /// Verify if a price and return it if the period already exists
 
         public async Task<PriceDTO?> GetPriceRange(DateTime validFrom, DateTime validTo)
         {

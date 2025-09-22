@@ -4,32 +4,30 @@ using parking_manager.Interfaces;
 
 namespace parking_manager.Services
 {
-    public class ParkingSessionService(IParkingSessionsRepository parkingRepository, IPriceRepository priceRepository, IVehicleRepository vehicleRepository) : IParkingSessionService
+    public class ParkingSessionService(IParkingSessionsRepository parkingRepository, IPriceRepository priceRepository, IVehicleService vehicleService) : IParkingSessionService
     {
 
         private readonly IParkingSessionsRepository _parkingRepository = parkingRepository;
         private readonly IPriceRepository _priceRepository = priceRepository;
 
-        private readonly IVehicleRepository _vehicleRepository = vehicleRepository;
+        private readonly IVehicleService _vehicleService = vehicleService;
 
+        /// Create a new parking session with parameters plate, exit date and total price with value null
 
         public async Task<ParkingSessionsDTO> CreateParkingSession(string plate)
         {
             var alreadyExists = await _parkingRepository.GetActiveParkingSession(plate);
             if (alreadyExists != null)
             {
-                throw new Exception("There is already an active parking session for this vehicle");
+                throw new Exception("Não pode haver mais de uma sessão ativa para o mesmo veículo");
             }
 
-            var vehicleExists = await _vehicleRepository.GetVehicleById(plate);
+            var vehicleExists = await _vehicleService.GetVehicleById(plate);
             if (vehicleExists == null)
             {
-                var newVehicle = new VehiclesEntity
-                {
-                    Plate = plate
-                };
-                await _vehicleRepository.CreateVehicle(newVehicle);
+                await _vehicleService.CreateVehicle(new VehicleDTO { Plate = plate });
             }
+
 
             var newParkingSession = new ParkingSessionsEntity
             {
@@ -51,15 +49,16 @@ namespace parking_manager.Services
             };
         }
 
+        /// Finalize a parking session and calculate the total price, hours paid and duration
         public async Task<ParkingSessionsDTO> FinalizeParkingSession(string plate)
         {
-            var parkingSession = await _parkingRepository.GetActiveParkingSession(plate) ?? throw new Exception("There is no active parking session for this vehicle");
+            var parkingSession = await _parkingRepository.GetActiveParkingSession(plate) ?? throw new Exception("Não existe sessão ativa para o veículo");
 
             parkingSession.ExitDate = DateTime.Now;
             parkingSession.UpdatedAt = DateTime.Now;
 
 
-            var prices = await _priceRepository.GetPriceValidation(parkingSession.EntryDate, parkingSession.ExitDate ?? DateTime.Now) ?? throw new Exception("There is no price defined for this period");
+            var prices = await _priceRepository.GetPriceValidation(parkingSession.EntryDate, parkingSession.ExitDate ?? DateTime.Now) ?? throw new Exception("Não existe preço definido para essa data");
             var pricePerHour = prices.PricePerHour;
             var priceFirstHour = prices.FirstHourPrice;
 
@@ -82,6 +81,9 @@ namespace parking_manager.Services
                 TotalPrice = parkingSession.TotalPrice ?? 0
             };
         }
+
+        /// Get all parking sessions
+
 
         public async Task<IEnumerable<ParkingSessionsDTO>> GetParkingSessions()
         {
@@ -110,7 +112,7 @@ namespace parking_manager.Services
                     var durationSession = CalculateDuration(item.EntryDate, item.ExitDate);
                     var totalHours = CalculateHours(durationSession);
 
-                    var getPricePerHour = await _priceRepository.GetPriceValidation(item.EntryDate, item.ExitDate ?? DateTime.Now) ?? throw new Exception("There is no price defined for this period");
+                    var getPricePerHour = await _priceRepository.GetPriceValidation(item.EntryDate, item.ExitDate ?? DateTime.Now) ?? throw new Exception("Não existe preço definido para essa data");
                     var pricePerHour = getPricePerHour.PricePerHour;
 
                     var parkingSessionDTO = new ParkingSessionsDTO
@@ -162,6 +164,8 @@ namespace parking_manager.Services
 
         }
 
+        /// Calculate hours based on duration
+
 
         public static int CalculateHours(TimeSpan duration)
         {
@@ -174,11 +178,13 @@ namespace parking_manager.Services
             return Convert.ToInt32(hoursPaid);
         }
 
+        /// Calculate duration between entry date and exit date
+
         public static TimeSpan CalculateDuration(DateTime entryDate, DateTime? exitDate)
         {
             if (exitDate < entryDate || exitDate == entryDate || exitDate == null)
             {
-                throw new Exception("Invalid dates provided");
+                throw new Exception("Data de saída deve ser maior que a data de entrada.");
             }
 
             return exitDate.Value - entryDate;

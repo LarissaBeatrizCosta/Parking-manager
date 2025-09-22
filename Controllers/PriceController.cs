@@ -10,6 +10,8 @@ namespace parking_manager.Controllers
     {
         private readonly IPriceService _priceService = priceService;
 
+        /// Create a new price
+
         [HttpPost]
         public async Task<IActionResult> CreatePrice(PriceDTO price)
         {
@@ -20,24 +22,27 @@ namespace parking_manager.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode(500, ex.Message);
             }
         }
 
+        /// Return a price range
+
+
         [HttpGet("{validFrom}/{validTo}")]
-       public async Task<IActionResult> GetPriceRange(DateTime validFrom, DateTime validTo)
+        public async Task<IActionResult> GetPriceRange(DateTime validFrom, DateTime validTo)
         {
             try
             {
                 var priceRange = await _priceService.GetPriceRange(validFrom, validTo);
                 if (priceRange == null)
-                    return NotFound("Price range not found");
+                    return NotFound("Preço não encontrado");
 
                 return Ok(priceRange);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode(500, ex.Message);
             }
         }
 
