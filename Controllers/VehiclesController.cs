@@ -11,7 +11,6 @@ namespace parking_manager.Controllers
         private readonly IVehicleService _vehicleService = vehicleService;
 
         /// Create a new vehicle
-
         [HttpPost]
         public async Task<IActionResult> CreateVehicle(VehicleDTO vehicle)
         {

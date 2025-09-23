@@ -16,22 +16,24 @@ namespace parking_manager.Services
 
         public async Task<ParkingSessionsDTO> CreateParkingSession(string plate)
         {
-            var alreadyExists = await _parkingRepository.GetActiveParkingSession(plate);
+            var plateFormatted = plate.Trim().ToUpper().Replace("-", "");
+
+            var alreadyExists = await _parkingRepository.GetActiveParkingSession(plateFormatted);
             if (alreadyExists != null)
             {
                 throw new Exception("Não pode haver mais de uma sessão ativa para o mesmo veículo");
             }
 
-            var vehicleExists = await _vehicleService.GetVehicleById(plate);
+            var vehicleExists = await _vehicleService.GetVehicleById(plateFormatted);
             if (vehicleExists == null)
             {
-                await _vehicleService.CreateVehicle(new VehicleDTO { Plate = plate });
+                await _vehicleService.CreateVehicle(new VehicleDTO { Plate = plateFormatted });
             }
 
 
             var newParkingSession = new ParkingSessionsEntity
             {
-                VehicleId = plate,
+                VehicleId = plateFormatted,
                 ExitDate = null,
                 TotalPrice = null
             };

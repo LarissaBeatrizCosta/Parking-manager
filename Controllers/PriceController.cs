@@ -11,7 +11,6 @@ namespace parking_manager.Controllers
         private readonly IPriceService _priceService = priceService;
 
         /// Create a new price
-
         [HttpPost]
         public async Task<IActionResult> CreatePrice(PriceDTO price)
         {
@@ -27,8 +26,6 @@ namespace parking_manager.Controllers
         }
 
         /// Return a price range
-
-
         [HttpGet("{validFrom}/{validTo}")]
         public async Task<IActionResult> GetPriceRange(DateTime validFrom, DateTime validTo)
         {

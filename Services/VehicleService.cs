@@ -8,7 +8,7 @@ namespace parking_manager.Services
 
     public partial class VehicleService(IVehicleRepository vehicleRepository) : IVehicleService
     {
-        [GeneratedRegex(@"^([A-Z]{3}-[0-9]{4}|[A-Z]{3}[0-9][A-Z][0-9]{2})$")]
+        [GeneratedRegex(@"^([A-Z]{3}-?[0-9]{4}|[A-Z]{3}[0-9][A-Z][0-9]{2})$")]
         private static partial Regex plateRegex();
         private readonly IVehicleRepository _vehicleRepository = vehicleRepository;
 
